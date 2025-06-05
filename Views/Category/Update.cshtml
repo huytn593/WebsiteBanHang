@@ -1,0 +1,24 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Cập nhật danh mục";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Update" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">💾 Cập nhật</button>
+    <a asp-action="Index" class="btn btn-secondary">⬅️ Quay lại</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

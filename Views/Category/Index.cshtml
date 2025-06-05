@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Danh sách danh mục";
+}
+
+<h2>@ViewData["Title"]</h2>
+<a asp-action="Add" class="btn btn-primary mb-3">➕ Thêm danh mục</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên danh mục</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Id</td>
+                <td>@c.Name</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@c.Id" class="btn btn-info btn-sm">🔍</a>
+                    <a asp-action="Update" asp-route-id="@c.Id" class="btn btn-warning btn-sm">✏️</a>
+                    <a asp-action="Delete" asp-route-id="@c.Id" class="btn btn-danger btn-sm">🗑️</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

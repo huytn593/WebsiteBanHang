@@ -1,0 +1,14 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Chi tiết danh mục";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">ID: @Model.Id</h5>
+        <p class="card-text"><strong>Tên danh mục:</strong> @Model.Name</p>
+        <a asp-action="Index" class="btn btn-secondary">⬅️ Quay lại</a>
+    </div>
+</div>

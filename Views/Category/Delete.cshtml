@@ -1,0 +1,19 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Xoá danh mục";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Bạn có chắc chắn muốn xoá danh mục này?</h4>
+<dl class="row">
+    <dt class="col-sm-2">Tên danh mục</dt>
+    <dd class="col-sm-10">@Model.Name</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">🗑️ Xoá</button>
+    <a asp-action="Index" class="btn btn-secondary">⬅️ Quay lại</a>
+</form>
+

@@ -1,0 +1,63 @@
+﻿@model WebsiteBanHang.Models.Product
+
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<h2 class="my-4">Chi tiết sản phẩm</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card p-3 shadow-sm">
+            <img src="@Model.ImageUrl" alt="Ảnh chính" class="img-fluid mb-3" id="mainImage" style="cursor: pointer;" />
+            <div class="d-flex flex-wrap gap-2">
+                @if (Model.ProductImages != null && Model.ProductImages.Any())
+                {
+                    foreach (var imageUrl in Model.ProductImages)
+                    {
+                        <img src="@imageUrl" class="img-thumbnail" style="width: 100px; height: auto; cursor: pointer;" onclick="changeMainImage('@imageUrl')" />
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card p-4 shadow-sm">
+            <h4 class="mb-3">@Model.Name</h4>
+            <p><strong>Giá:</strong> @Model.Price.ToString("N0") đ</p>
+            <p><strong>Mô tả:</strong> @Model.Description</p>
+            <a href="@Url.Action("Index", "Product")" class="btn btn-secondary mt-3">← Quay lại danh sách</a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal hiển thị ảnh phóng to -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-body text-center p-0">
+                <img id="modalImage" src="#" class="img-fluid rounded" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Đổi ảnh chính khi click thumbnail
+    function changeMainImage(src) {
+        $('#mainImage').attr('src', src);
+    }
+
+    // Click ảnh để phóng to
+    $('#mainImage').on('click', function () {
+        const src = $(this).attr('src');
+        $('#modalImage').attr('src', src);
+        $('#imageModal').modal('show');
+    });
+</script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" rel="stylesheet" />
